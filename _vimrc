@@ -10,10 +10,24 @@ call vundle#begin(path)
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'tpope/vim-vinegar'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'Townk/vim-autoclose'
 
 
 " The following are examples of different formats supported.
@@ -51,4 +65,23 @@ filetype plugin indent on    " required
 syntax enable
 set background=dark
 colorscheme solarized
+
+:set guioptions-=m  "remove menu bar
+:set guioptions-=T  "remove toolbar
+:set guioptions-=r  "remove right-hand scroll bar
+:set guioptions-=L  "remove left-hand scroll bar
+
+"Font 
 set guifont=Inconsolata:h11
+
+let mapleader=","
+nmap <F8> :TagbarToggle<CR>
+set fdm=syntax
+nmap <C-n> :NERDTreeToggle<CR>
+let g:netrw_preview = 1
+
+set splitbelow
+set splitright
+
+
+
