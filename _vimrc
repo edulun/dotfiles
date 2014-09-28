@@ -1,5 +1,7 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Use Vim settings, rather then Vi settings. This setting must be as early as
+" possible, as it has side effects.
+set nocompatible
+filetype off
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/vimfiles/bundle/Vundle.vim/
@@ -29,28 +31,8 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'Townk/vim-autoclose'
 
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-
-
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -64,7 +46,9 @@ filetype plugin indent on    " required
 "Configure solarized scheme
 syntax enable
 set background=dark
-colorscheme solarized
+
+set backupdir=~/vimtmp,.
+set directory=~/vimtmp,.
 
 :set guioptions-=m  "remove menu bar
 :set guioptions-=T  "remove toolbar
@@ -74,14 +58,22 @@ colorscheme solarized
 "Font 
 set guifont=Inconsolata:h11
 
-let mapleader=","
+"map <space> :
+let mapleader=" "
 nmap <F8> :TagbarToggle<CR>
 set fdm=syntax
 nmap <C-n> :NERDTreeToggle<CR>
 let g:netrw_preview = 1
 
+noremap <C-L><C-L> :set invnumber<CR>
+
+inoremap jk <esc>
+inoremap kj <esc>
+inoremap ; :
+
+colorscheme wombat
 set splitbelow
 set splitright
 
 
-
+map <f7> :vs $MYVIMRC
