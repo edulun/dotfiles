@@ -26,32 +26,37 @@ Plugin 'godlygeek/csapprox'
 " Decent defaults
 Plugin 'tpope/vim-sensible'
 
+" Tagbar, mapped to <leader>t
 Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdcommenter'
+
+" NERDtree, mapped to <leader>n
 Plugin 'scrooloose/nerdtree'
+
+" Quick commenting code <>cc
+Plugin 'scrooloose/nerdcommenter'
+
+"Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'eagletmt/neco-ghc'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'tpope/vim-vinegar'
-Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'Townk/vim-autoclose'
+"Plugin 'garbas/vim-snipmate'
+"Plugin 'honza/vim-snippets'
+"Plugin 'Townk/vim-autoclose'
 
 call vundle#end()            " required
 
 let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 let mapleader = "\<Space>"
-colorscheme wombat
+colorscheme wombat256
+
 
 "Saving
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
 
 "Copy/paste from clipboard
 vmap <Leader>y "*y
@@ -61,7 +66,9 @@ nmap <Leader>P "*P
 vmap <Leader>p "*p
 vmap <Leader>P "*P""""""
 
-vmap <Leader>p "+p
+"Map cmdline to :
+:nmap ; :
+
 "Open file
 nnoremap <Leader>o :CtrlP<CR>
 "Toggle tagbar
@@ -73,7 +80,6 @@ nnoremap <Leader>l :set invnumber<CR>
 
 inoremap jk <esc>
 inoremap kj <esc>
-inoremap ; :
 
 set splitbelow
 set splitright
