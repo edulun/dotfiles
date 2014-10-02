@@ -22,12 +22,14 @@ Plugin 'gmarik/Vundle.vim'
 " Setting colorschemes
 Plugin 'flazz/vim-colorschemes'
 Plugin 'godlygeek/csapprox'
-
 " Decent defaults
 Plugin 'tpope/vim-sensible'
 
 " Tagbar, mapped to <leader>t
 Plugin 'majutsushi/tagbar'
+Plugin 'takac/vim-hardtime'
+
+Plugin 'takac/vim-hardtime'
 
 " NERDtree, mapped to <leader>n
 Plugin 'scrooloose/nerdtree'
@@ -35,9 +37,13 @@ Plugin 'scrooloose/nerdtree'
 " Quick commenting code <>cc
 Plugin 'scrooloose/nerdcommenter'
 
-"Plugin 'tpope/vim-surround'
+" Git wrapper
 Plugin 'tpope/vim-fugitive'
+
+" Easy moving around
 Plugin 'Lokaltog/vim-easymotion'
+
+"Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'fholgado/minibufexpl.vim'
@@ -105,3 +111,5 @@ map <C-l> <C-W>l
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
+
+:HardTimeOn
