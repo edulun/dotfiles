@@ -4,22 +4,35 @@ set nocompatible
 filetype off
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/vimfiles/bundle/Vundle.vim/
-let path='~/vimfiles/bundle'
-call vundle#begin(path)
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+if has("win32")
+  set rtp+=~/vimfiles/bundle/Vundle.vim/
+  let path='~/vimfiles/bundle'
+  call vundle#begin(path)
+else
+  set rtp+=~/.vim/bundle/Vundle.vim/
+  call vundle#begin()
+endif
+
+set backupdir=~/.vimtmp,.
+set directory=~/.vimtmp,.
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
+" Setting colorschemes
 Plugin 'flazz/vim-colorschemes'
+Plugin 'godlygeek/csapprox'
+
+" Decent defaults
+Plugin 'tpope/vim-sensible'
+
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'eagletmt/neco-ghc'
@@ -32,48 +45,57 @@ Plugin 'honza/vim-snippets'
 Plugin 'Townk/vim-autoclose'
 
 call vundle#end()            " required
-filetype plugin indent on    " required
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
-"Configure solarized scheme
-syntax enable
-set background=dark
+let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
+let mapleader = "\<Space>"
+colorscheme wombat
 
-set backupdir=~/vimtmp,.
-set directory=~/vimtmp,.
+"Saving
+nnoremap <Leader>w :w<CR>
 
-:set guioptions-=m  "remove menu bar
-:set guioptions-=T  "remove toolbar
-:set guioptions-=r  "remove right-hand scroll bar
-:set guioptions-=L  "remove left-hand scroll bar
+"Copy/paste from clipboard
+vmap <Leader>y "*y
+vmap <Leader>d "*d
+nmap <Leader>p "*p
+nmap <Leader>P "*P
+vmap <Leader>p "*p
+vmap <Leader>P "*P""""""
 
-"Font 
-set guifont=Inconsolata:h11
-
-"map <space> :
-let mapleader=" "
-nmap <F8> :TagbarToggle<CR>
-set fdm=syntax
-nmap <C-n> :NERDTreeToggle<CR>
-let g:netrw_preview = 1
-
-noremap <C-L><C-L> :set invnumber<CR>
+vmap <Leader>p "+p
+"Open file
+nnoremap <Leader>o :CtrlP<CR>
+"Toggle tagbar
+nnoremap <Leader>t :TagbarToggle<CR>
+"Toggle nerdtree
+nnoremap <Leader>n :NERDTreeToggle<CR>
+"Toggle lineNumber
+nnoremap <Leader>l :set invnumber<CR>
 
 inoremap jk <esc>
 inoremap kj <esc>
 inoremap ; :
 
-colorscheme wombat
 set splitbelow
 set splitright
 
 
-map <f7> :vs $MYVIMRC
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set si "Smart indent
+set wrap "Wrap lines
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+"Go to end of paste 
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
