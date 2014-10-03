@@ -5,11 +5,11 @@ filetype off
 
 " set the runtime path to include Vundle and initialize
 if has("win32")
-  set rtp+=~/vimfiles/bundle/Vundle.vim/
+  set rtp+=~/vimfiles/bundle/Vundle
   let path='~/vimfiles/bundle'
   call vundle#begin(path)
 else
-  set rtp+=~/.vim/bundle/Vundle.vim/
+  set rtp+=~/.vim/bundle/Vundle
   call vundle#begin()
 endif
 
@@ -17,18 +17,17 @@ set backupdir=~/.vimtmp,.
 set directory=~/.vimtmp,.
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim', {'name': 'Vundle'}
 
 " Setting colorschemes
 Plugin 'flazz/vim-colorschemes'
 Plugin 'godlygeek/csapprox'
+
 " Decent defaults
 Plugin 'tpope/vim-sensible'
 
 " Tagbar, mapped to <leader>t
 Plugin 'majutsushi/tagbar'
-Plugin 'takac/vim-hardtime'
-
 Plugin 'takac/vim-hardtime'
 
 " NERDtree, mapped to <leader>n
@@ -112,4 +111,3 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
-:HardTimeOn
