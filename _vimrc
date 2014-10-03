@@ -5,11 +5,11 @@ filetype off
 
 " set the runtime path to include Vundle and initialize
 if has("win32")
-  set rtp+=~/vimfiles/bundle/Vundle
+  set rtp+=~/vimfiles/bundle/Vundle.vim
   let path='~/vimfiles/bundle'
   call vundle#begin(path)
 else
-  set rtp+=~/.vim/bundle/Vundle
+  set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
 endif
 
