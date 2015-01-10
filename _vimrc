@@ -21,7 +21,8 @@ Plugin 'gmarik/Vundle.vim'
 
 " Setting colorschemes
 Plugin 'flazz/vim-colorschemes'
-Plugin 'godlygeek/csapprox'
+
+"Plugin 'godlygeek/csapprox'
 
 " Decent defaults
 Plugin 'tpope/vim-sensible'
@@ -44,17 +45,9 @@ Plugin 'Lokaltog/vim-easymotion'
 
 "Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'fholgado/minibufexpl.vim'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
-"Plugin 'honza/vim-snippets'
-"Plugin 'Townk/vim-autoclose'
 
 call vundle#end()            " required
 
-let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 let mapleader = "\<Space>"
 colorscheme wombat256
 
