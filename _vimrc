@@ -1,4 +1,4 @@
-" Use Vim settings, rather then Vi settings. This setting must be as early as
+," Use Vim settings, rather then Vi settings. This setting must be as early as
 " possible, as it has side effects.
 set nocompatible
 filetype off
@@ -17,7 +17,7 @@ set backupdir=~/.vimtmp,.
 set directory=~/.vimtmp,.
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim', {'name': 'Vundle'}
+Plugin 'gmarik/Vundle.vim' 
 
 " Setting colorschemes
 Plugin 'flazz/vim-colorschemes'
