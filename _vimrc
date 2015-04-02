@@ -47,6 +47,8 @@ Plugin 'groenewege/vim-less'
 
 Plugin 'scrooloose/syntastic'
 
+Plugin 'bkad/CamelCaseMotion'
+
 call vundle#end()            " required
 
 let mapleader = "\<Space>"

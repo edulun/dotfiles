@@ -33,7 +33,10 @@ nnoremap <Leader>l :set invnumber<CR>
 nnoremap <Leader>y $copy
 nnoremap <Leader>d $cut
 nnoremap <Leader>p $paste
-nnoremap <Leader>u action Git.Pull
+nnoremap <Leader>u :action Git.Pull<CR>
+nnoremap <Leader>f :action ToggleDistractionFreeMode<CR>
+nnoremap <Leader>v :action ToggleFloatingMode<CR>
+nnoremap <Leader>s :action MoveEditorToOppositeTabGroup<CR>
 
 inoremap jk <esc>
 inoremap kj <esc>
@@ -66,5 +69,6 @@ nnoremap <silent> p p`]
 let @a='yyp`]^wwi../<Esc>'
 
 set ignorecase smartcase
+
 
 
