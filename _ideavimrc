@@ -1,74 +1,26 @@
-" Use Vim settings, rather then Vi settings. This setting must be as early as
-" possible, as it has side effects.
-set nocompatible
-filetype off
-let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
-let mapleader = "\<Space>"
-colorscheme wombat256
+let mapleader = " "
 
-"Saving
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
-
-"Copy/paste from clipboard
-vmap <Leader>y "*y
-vmap <Leader>d "*d
-nmap <Leader>p "*p
-nmap <Leader>P "*P
-vmap <Leader>p "*p
-vmap <Leader>P "*P""""""
-
-"Map cmdline to :
 :nmap ; :
-
-"Open file
-nnoremap <Leader>o :CtrlP<CR>
-"Toggle tagbar
-nnoremap <Leader>t :TagbarToggle<CR>
-"Toggle nerdtree
-nnoremap <Leader>n :NERDTreeToggle<CR>
-"Toggle lineNumber
-nnoremap <Leader>l :set invnumber<CR>
 
 nnoremap <Leader>y $copy
 nnoremap <Leader>d $cut
 nnoremap <Leader>p $paste
-nnoremap <Leader>u :action Git.Pull<CR>
+
+nnoremap <Leader>v :action TogglePresentationMode<CR>
 nnoremap <Leader>f :action ToggleDistractionFreeMode<CR>
-nnoremap <Leader>v :action ToggleFloatingMode<CR>
 nnoremap <Leader>s :action MoveEditorToOppositeTabGroup<CR>
+
+" Git actions
+nnoremap <Leader>gp :action Git.Pull<CR>
+nnoremap <Leader>gf :action Git.Fetch<CR>
+nnoremap <Leader>gc :action Git.Commit<CR>
+nnoremap <Leader>gb :action Git.Branches<CR>
 
 inoremap jk <esc>
 inoremap kj <esc>
-
-set splitbelow
-set splitright
-
-
-" 1 tab == 2 spaces
-set shiftwidth=2
-set tabstop=2
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-set si "Smart indent
-set wrap "Wrap lines
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-"Go to end of paste 
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
-
-let @a='yyp`]^wwi../<Esc>'
-
-set ignorecase smartcase
-
-
 
