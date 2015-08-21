@@ -27,6 +27,8 @@ Plugin 'tpope/vim-sensible'
 Plugin 'majutsushi/tagbar'
 Plugin 'takac/vim-hardtime'
 
+Plugin 'tetsuo13/Vim-log4j'
+
 " NERDtree, mapped to <leader>n
 Plugin 'scrooloose/nerdtree'
 
