@@ -1,15 +1,11 @@
 set nocompatible
 filetype off
 
-" set the runtime path to include Vundle and initialize
-if has("win32")
-  set rtp+=~/vimfiles/bundle/Vundle.vim
-  let path='~/vimfiles/bundle'
-  call vundle#begin(path)
-else
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
+if $COLORTERM == 'gnome-terminal'
+  set t_Co=256
 endif
+
+call vundle#begin()
 
 set noswapfile 
 set nobackup
@@ -23,11 +19,8 @@ Plugin 'flazz/vim-colorschemes'
 " Decent defaults
 Plugin 'tpope/vim-sensible'
 
-" Tagbar, mapped to <leader>t
-Plugin 'majutsushi/tagbar'
+" Life is suffering
 Plugin 'takac/vim-hardtime'
-
-Plugin 'tetsuo13/Vim-log4j'
 
 " NERDtree, mapped to <leader>n
 Plugin 'scrooloose/nerdtree'
@@ -38,24 +31,19 @@ Plugin 'scrooloose/nerdcommenter'
 " Git wrapper
 Plugin 'tpope/vim-fugitive'
 
-" Easy moving around
-Plugin 'Lokaltog/vim-easymotion'
-
-"Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
-
-" Less syntax
-Plugin 'groenewege/vim-less'
 
 Plugin 'scrooloose/syntastic'
 
 Plugin 'bkad/CamelCaseMotion'
 
-call vundle#end()            " required
+" Bracketed pasting, so pasting code doesn't mess up the indentation.
+Plugin 'conradirwin/vim-bracketed-paste'
+
+call vundle#end()
 
 let mapleader = "\<Space>"
 colorscheme wombat256
-
 
 "Saving
 nnoremap <Leader>w :w<CR>
@@ -82,13 +70,13 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>l :set invnumber<CR>
 
 inoremap jk <esc>
-inoremap kj <esc>
 
 set splitbelow
 set splitright
 
 
 " 1 tab == 2 spaces
+set expandtab
 set shiftwidth=2
 set tabstop=2
 
@@ -103,13 +91,4 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 

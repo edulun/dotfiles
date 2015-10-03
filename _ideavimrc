@@ -14,10 +14,12 @@ nnoremap <Leader>s :action MoveEditorToOppositeTabGroup<CR>
 nnoremap <Leader>gp :action Git.Pull<CR>
 nnoremap <Leader>gf :action Git.Fetch<CR>
 nnoremap <Leader>gc :action Git.Commit<CR>
+nnoremap <Leader>gc :action Git.Merge<CR>
 nnoremap <Leader>gb :action Git.Branches<CR>
 
 nnoremap <Leader>t :action ActivateGruntToolWindow<CR>
 nnoremap <Leader>r :action Run<CR>
+nnoremap <Leader>d :action Debug<CR>
 
 nnoremap <Leader><Leader> :action ReformatCode<CR>
 
