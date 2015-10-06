@@ -1,14 +1,15 @@
-set nocompatible
+set nocompatible 
 filetype off
 
 if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
 
-call vundle#begin()
-
 set noswapfile 
 set nobackup
+
+set rtp+=~/.vim/bundle/Vundle.vim 
+call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim' 
@@ -40,10 +41,14 @@ Plugin 'bkad/CamelCaseMotion'
 " Bracketed pasting, so pasting code doesn't mess up the indentation.
 Plugin 'conradirwin/vim-bracketed-paste'
 
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'bling/vim-airline'
+
 call vundle#end()
 
-let mapleader = "\<Space>"
 colorscheme wombat256
+let mapleader = "\<Space>"
 
 "Saving
 nnoremap <Leader>w :w<CR>
@@ -62,8 +67,6 @@ vmap <Leader>P "*P""""""
 
 "Open file
 nnoremap <Leader>o :CtrlP<CR>
-"Toggle tagbar
-nnoremap <Leader>t :TagbarToggle<CR>
 "Toggle nerdtree
 nnoremap <Leader>n :NERDTreeToggle<CR>
 "Toggle lineNumber
@@ -91,4 +94,11 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+let g:hardtime_default_on = 1
+
+let g:airline#extensions#tabline#enabled = 1
+
+let g:airline#extensions#tabline#fnamemod = ':t'
+
 
