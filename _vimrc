@@ -23,9 +23,6 @@ Plugin 'tpope/vim-sensible'
 " Life is suffering
 Plugin 'takac/vim-hardtime'
 
-" NERDtree, mapped to <leader>n
-Plugin 'scrooloose/nerdtree'
-
 " Quick commenting code <>cc
 Plugin 'scrooloose/nerdcommenter'
 
@@ -47,7 +44,7 @@ Plugin 'bling/vim-airline'
 
 call vundle#end()
 
-colorscheme wombat256
+colorscheme up
 let mapleader = "\<Space>"
 
 "Saving
@@ -67,8 +64,7 @@ vmap <Leader>P "*P""""""
 
 "Open file
 nnoremap <Leader>o :CtrlP<CR>
-"Toggle nerdtree
-nnoremap <Leader>n :NERDTreeToggle<CR>
+
 "Toggle lineNumber
 nnoremap <Leader>l :set invnumber<CR>
 
