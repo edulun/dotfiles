@@ -1,12 +1,9 @@
-set nocompatible 
-filetype off
-
-if $COLORTERM == 'gnome-terminal'
-  set t_Co=256
-endif
-
 set noswapfile 
+
+set backupdir=/tmp
 set nobackup
+
+filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim 
 call vundle#begin()
@@ -14,14 +11,15 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim' 
 
+Plugin 'ludovicchabant/vim-gutentags'
+
+Plugin 'mustache/vim-mustache-handlebars'
+
 " Setting colorschemes
 Plugin 'flazz/vim-colorschemes'
 
 " Decent defaults
 Plugin 'tpope/vim-sensible'
-
-" Life is suffering
-Plugin 'takac/vim-hardtime'
 
 " Quick commenting code <>cc
 Plugin 'scrooloose/nerdcommenter'
@@ -29,27 +27,22 @@ Plugin 'scrooloose/nerdcommenter'
 " Git wrapper
 Plugin 'tpope/vim-fugitive'
 
+" File navigation
 Plugin 'kien/ctrlp.vim'
 
 Plugin 'scrooloose/syntastic'
 
-Plugin 'bkad/CamelCaseMotion'
-
 " Bracketed pasting, so pasting code doesn't mess up the indentation.
 Plugin 'conradirwin/vim-bracketed-paste'
 
-Plugin 'Valloric/YouCompleteMe'
-
 Plugin 'bling/vim-airline'
+
+Plugin 'bronson/vim-trailing-whitespace'
 
 call vundle#end()
 
-colorscheme up
+colorscheme wombat
 let mapleader = "\<Space>"
-
-"Saving
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
 
 "Copy/paste from clipboard
 vmap <Leader>y "*y
@@ -68,7 +61,11 @@ nnoremap <Leader>o :CtrlP<CR>
 "Toggle lineNumber
 nnoremap <Leader>l :set invnumber<CR>
 
+" Open ctrlp in buffer mode
+nnoremap <Leader>p :CtrlPBuffer<CR>
+
 inoremap jk <esc>
+inoremap kj <esc>
 
 set splitbelow
 set splitright
@@ -86,15 +83,13 @@ set tw=500
 set si "Smart indent
 set wrap "Wrap lines
 
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-let g:hardtime_default_on = 1
+"let g:hardtime_default_on = 1
 
 let g:airline#extensions#tabline#enabled = 1
 
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+nnoremap <A-n> :bnext<CR>:redraw<CR>:ls<CR>
+nnoremap <A-p> :bprevious<CR>:redraw<CR>:ls<CR>
 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/dist/*,*/node_modules/*,*/locale/*,*/reports/*,*/bower_components/*
