@@ -17,4 +17,3 @@ up(){
   cd $d
 }
 
-bind '"\t":menu-complete'

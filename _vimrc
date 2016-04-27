@@ -1,17 +1,15 @@
-set noswapfile 
+set noswapfile
 
 set backupdir=/tmp
 set nobackup
 
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim 
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim' 
-
-Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'gmarik/Vundle.vim'
 
 Plugin 'mustache/vim-mustache-handlebars'
 
@@ -24,6 +22,9 @@ Plugin 'tpope/vim-sensible'
 " Quick commenting code <>cc
 Plugin 'scrooloose/nerdcommenter'
 
+Plugin 'pangloss/vim-javascript'
+Plugin 'alvan/vim-closetag'
+
 " Git wrapper
 Plugin 'tpope/vim-fugitive'
 
@@ -35,28 +36,29 @@ Plugin 'scrooloose/syntastic'
 " Bracketed pasting, so pasting code doesn't mess up the indentation.
 Plugin 'conradirwin/vim-bracketed-paste'
 
+Plugin 'edulun/vim-jsx'
+
 Plugin 'bling/vim-airline'
 
 Plugin 'bronson/vim-trailing-whitespace'
 
+
+Plugin 'shougo/deoplete.nvim'
 call vundle#end()
 
 colorscheme wombat
 let mapleader = "\<Space>"
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
 
-"Copy/paste from clipboard
-vmap <Leader>y "*y
-vmap <Leader>d "*d
-nmap <Leader>p "*p
-nmap <Leader>P "*P
-vmap <Leader>p "*p
-vmap <Leader>P "*P""""""
-
-"Map cmdline to ;
-:nmap ; :
-
-"Open file
-nnoremap <Leader>o :CtrlP<CR>
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 "Toggle lineNumber
 nnoremap <Leader>l :set invnumber<CR>
@@ -70,7 +72,6 @@ inoremap kj <esc>
 set splitbelow
 set splitright
 
-
 " 1 tab == 2 spaces
 set expandtab
 set shiftwidth=2
@@ -83,13 +84,16 @@ set tw=500
 set si "Smart indent
 set wrap "Wrap lines
 
-"let g:hardtime_default_on = 1
-
 let g:airline#extensions#tabline#enabled = 1
-
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 nnoremap <A-n> :bnext<CR>:redraw<CR>:ls<CR>
 nnoremap <A-p> :bprevious<CR>:redraw<CR>:ls<CR>
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/dist/*,*/node_modules/*,*/locale/*,*/reports/*,*/bower_components/*
+
+noremap <Leader>w :w<CR>
+noremap <Leader>t :split term://bash\ -login<CR>
+
+let g:deoplete#enable_at_startup = 1
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/dist/*,*/node_modules/*,*/reports/*,*/bower_components/*
