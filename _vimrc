@@ -6,12 +6,11 @@ set nobackup
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
+set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-
-Plugin 'mustache/vim-mustache-handlebars'
 
 " Setting colorschemes
 Plugin 'flazz/vim-colorschemes'
@@ -22,14 +21,14 @@ Plugin 'tpope/vim-sensible'
 " Quick commenting code <>cc
 Plugin 'scrooloose/nerdcommenter'
 
+" File navigation
+Plugin 'kien/ctrlp.vim'
+
 Plugin 'pangloss/vim-javascript'
-Plugin 'alvan/vim-closetag'
 
 " Git wrapper
 Plugin 'tpope/vim-fugitive'
 
-" File navigation
-Plugin 'kien/ctrlp.vim'
 
 Plugin 'scrooloose/syntastic'
 
