@@ -1,6 +1,5 @@
-set noswapfile
-
 set backupdir=/tmp
+set directory=/tmp
 set nobackup
 
 filetype off
@@ -18,56 +17,44 @@ Plugin 'flazz/vim-colorschemes'
 " Decent defaults
 Plugin 'tpope/vim-sensible'
 
+" Status/ tabline
+Plugin 'bling/vim-airline'
+
 " Quick commenting code <>cc
 Plugin 'scrooloose/nerdcommenter'
 
 " File navigation
-Plugin 'kien/ctrlp.vim'
+" <F5> - refresh
+" <c-f>, <c-b>  - cycle modes
+" <c-t>, <c-v>, <c-x> to open the selected entry in a new tab or in a new split.
+" <c-n>, <c-p> to select the next/previous string in the prompt's history.
+" <c-y> new file
+" <c-z> mark/unmark multiple files and <c-o> to open them.
+Plugin 'ctrlpvim/ctrlp.vim'
 
-Plugin 'pangloss/vim-javascript'
+" Highlight EOL whitespace
+Plugin 'bronson/vim-trailing-whitespace'
 
 " Git wrapper
 Plugin 'tpope/vim-fugitive'
 
+
+Plugin 'tpope/vim-vinegar'
 
 Plugin 'scrooloose/syntastic'
 
 " Bracketed pasting, so pasting code doesn't mess up the indentation.
 Plugin 'conradirwin/vim-bracketed-paste'
 
+Plugin 'pangloss/vim-javascript'
 Plugin 'edulun/vim-jsx'
 
-Plugin 'bling/vim-airline'
+Plugin 'godlygeek/abular'
+Plugin 'plasticboy/vim-markdown'
 
-Plugin 'bronson/vim-trailing-whitespace'
-
-
-Plugin 'shougo/deoplete.nvim'
 call vundle#end()
 
-colorscheme wombat
-let mapleader = "\<Space>"
-" " Copy to clipboard
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
-
-" " Paste from clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
-
-"Toggle lineNumber
-nnoremap <Leader>l :set invnumber<CR>
-
-" Open ctrlp in buffer mode
-nnoremap <Leader>p :CtrlPBuffer<CR>
-
-inoremap jk <esc>
-inoremap kj <esc>
-
+colorscheme Monokai
 set splitbelow
 set splitright
 
@@ -83,16 +70,46 @@ set tw=500
 set si "Smart indent
 set wrap "Wrap lines
 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/dist/*,*/node_modules/*,*/reports/*,*/bower_components/*
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-nnoremap <A-n> :bnext<CR>:redraw<CR>:ls<CR>
-nnoremap <A-p> :bprevious<CR>:redraw<CR>:ls<CR>
+let mapleader = "\<Space>"
+
+inoremap jk <esc>
+inoremap kj <esc>
+
+nnoremap <silent><expr> <Leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
+
+inoremap jk <esc>
+inoremap kj <esc>
 
 
 noremap <Leader>w :w<CR>
-noremap <Leader>t :split term://bash\ -login<CR>
 
-let g:deoplete#enable_at_startup = 1
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/dist/*,*/node_modules/*,*/reports/*,*/bower_components/*
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+"Toggle lineNumber
+nnoremap <Leader>l :set invnumber<CR>
+
