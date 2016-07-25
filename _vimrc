@@ -38,7 +38,7 @@ Plugin 'bronson/vim-trailing-whitespace'
 " Git wrapper
 Plugin 'tpope/vim-fugitive'
 
-
+" Navigation
 Plugin 'tpope/vim-vinegar'
 
 Plugin 'scrooloose/syntastic'
@@ -47,10 +47,12 @@ Plugin 'scrooloose/syntastic'
 Plugin 'conradirwin/vim-bracketed-paste'
 
 Plugin 'pangloss/vim-javascript'
+
 Plugin 'edulun/vim-jsx'
 
-Plugin 'godlygeek/abular'
 Plugin 'plasticboy/vim-markdown'
+
+"Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 
@@ -76,11 +78,13 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+set foldmethod=syntax
+set foldlevelstart=20
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -90,11 +94,8 @@ let mapleader = "\<Space>"
 inoremap jk <esc>
 inoremap kj <esc>
 
-nnoremap <silent><expr> <Leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
-
 inoremap jk <esc>
 inoremap kj <esc>
-
 
 noremap <Leader>w :w<CR>
 
@@ -113,3 +114,6 @@ vnoremap <leader>P "+P
 "Toggle lineNumber
 nnoremap <Leader>l :set invnumber<CR>
 
+"Toggle search highlight
+let hlstate=1
+nnoremap <Leader>k :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
