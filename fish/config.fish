@@ -246,3 +246,8 @@ if status --is-login
 		end
 	end
 end
+
+#
+# Custom entries
+#
+fish_vi_key_bindings
