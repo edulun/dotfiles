@@ -49,10 +49,12 @@ Plugin 'conradirwin/vim-bracketed-paste'
 Plugin 'pangloss/vim-javascript'
 
 Plugin 'edulun/vim-jsx'
+Plugin 'dag/vim-fish'
 
 Plugin 'plasticboy/vim-markdown'
 
-"Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-surround'
+Plugin 'Townk/vim-autoclose'
 
 call vundle#end()
 
@@ -72,6 +74,9 @@ set tw=500
 set si "Smart indent
 set wrap "Wrap lines
 
+set ignorecase
+set smartcase
+
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/dist/*,*/node_modules/*,*/reports/*,*/bower_components/*
 
 set statusline+=%#warningmsg#
@@ -80,6 +85,9 @@ set statusline+=%*
 
 set foldmethod=syntax
 set foldlevelstart=20
+
+" Enable transparency
+hi Normal ctermbg=none
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
