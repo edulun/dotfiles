@@ -47,14 +47,14 @@ Plugin 'scrooloose/syntastic'
 Plugin 'conradirwin/vim-bracketed-paste'
 
 Plugin 'pangloss/vim-javascript'
-
 Plugin 'edulun/vim-jsx'
-Plugin 'dag/vim-fish'
 
 Plugin 'plasticboy/vim-markdown'
 
 Plugin 'tpope/vim-surround'
 Plugin 'Townk/vim-autoclose'
+
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 

@@ -1,0 +1,33 @@
+let mapleader = " "
+
+:nmap ; :
+
+nnoremap <Leader>y $copy
+nnoremap <Leader>d $cut
+nnoremap <Leader>p $paste
+
+nnoremap <Leader>v :action TogglePresentationMode<CR>
+nnoremap <Leader>f :action ToggleDistractionFreeMode<CR>
+nnoremap <Leader>s :action MoveEditorToOppositeTabGroup<CR>
+
+" Git actions
+nnoremap <Leader>gp :action Git.Pull<CR>
+nnoremap <Leader>gf :action Git.Fetch<CR>
+nnoremap <Leader>gc :action Git.Commit<CR>
+nnoremap <Leader>gc :action Git.Merge<CR>
+nnoremap <Leader>gb :action Git.Branches<CR>
+
+nnoremap <Leader>t :action ActivateGruntToolWindow<CR>
+nnoremap <Leader>r :action Run<CR>
+nnoremap <Leader>d :action Debug<CR>
+
+nnoremap <Leader><Leader> :action ReformatCode<CR>
+
+inoremap jk <esc>
+inoremap kj <esc>
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
