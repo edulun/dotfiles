@@ -1,7 +1,3 @@
-set backupdir=/tmp
-set directory=/tmp
-set nobackup
-
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -9,7 +5,7 @@ set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " Setting colorschemes
 Plugin 'flazz/vim-colorschemes'
@@ -22,6 +18,7 @@ Plugin 'bling/vim-airline'
 
 " Quick commenting code <>cc
 Plugin 'scrooloose/nerdcommenter'
+
 
 " File navigation
 " <F5> - refresh
@@ -41,31 +38,69 @@ Plugin 'tpope/vim-fugitive'
 " Navigation
 Plugin 'tpope/vim-vinegar'
 
+" Syntax checker
 Plugin 'scrooloose/syntastic'
 
-" Bracketed pasting, so pasting code doesn't mess up the indentation.
+"" For custom text objects, needed for all vim-textobj plugins.
+"Plug 'kana/vim-textobj-user'
+
+"" Variable (CamelCase or underscore) segment text object (iv / av).
+"Plug 'Julian/vim-textobj-variable-segment'
+
+"" Comment text object (ic / ac / aC)
+"Plug 'glts/vim-textobj-comment'
+
+"" Entire buffer text object (ie / ae).
+"Plug 'kana/vim-textobj-entire'
+
+"" HTML/XML attribute text object (ix / ax).
+"Plug 'whatyouhide/vim-textobj-xmlattr'
+
+"" Indent-level text object (ai / ii / aI / iI)
+"Plug 'michaeljsmith/vim-indent-object'
+
+ "Bracketed pasting, so pasting code doesn't mess up the indentation.
 Plugin 'conradirwin/vim-bracketed-paste'
 
-Plugin 'pangloss/vim-javascript'
-Plugin 'edulun/vim-jsx'
-
-Plugin 'plasticboy/vim-markdown'
+Plugin 'bkad/CamelCaseMotion'
 
 Plugin 'tpope/vim-surround'
+
 Plugin 'Townk/vim-autoclose'
 
+" 2-character search motion (s/S).
+Plugin 'justinmk/vim-sneak'
+
+" https://github.com/airblade/vim-gitgutter
+Plugin 'airblade/vim-gitgutter'
+
+Plugin 'mhinz/vim-startify'
+
+""" Language specific plugins
 Plugin 'rust-lang/rust.vim'
 
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
+
+Plugin 'Yggdroot/indentline'
+
 call vundle#end()
+
+set cursorline
 
 colorscheme Monokai
 set splitbelow
 set splitright
 
+highlight Visual ctermfg=233 ctermbg=67 guifg=#1b1d1e guibg=#465457
+
 " 1 tab == 2 spaces
 set expandtab
 set shiftwidth=2
 set tabstop=2
+
+set lazyredraw
 
 " Linebreak on 500 characters
 set lbr
@@ -73,6 +108,12 @@ set tw=500
 
 set si "Smart indent
 set wrap "Wrap lines
+
+
+set nobackup
+set directory=~/.vim/swaps
+set undofile
+set undodir=~/.vim/undos
 
 set ignorecase
 set smartcase
@@ -82,9 +123,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/dist/*,*/node_modules/*,*/reports/*,*
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-set foldmethod=syntax
-set foldlevelstart=20
 
 " Enable transparency
 hi Normal ctermbg=none
@@ -97,17 +135,31 @@ let g:syntastic_check_on_wq = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+let g:jsx_ext_required = 0
+
+let g:indentLine_char = '|'
+let g:indentLine_color_term = 242
+
 let mapleader = "\<Space>"
 
-inoremap jk <esc>
-inoremap kj <esc>
+let g:startify_bookmarks = ['~/.vimrc', '~/dev']
 
 inoremap jk <esc>
 inoremap kj <esc>
+inoremap jk <esc>
+inoremap kj <esc>
 
-noremap <Leader>w :w<CR>
+nnoremap j gj
+nnoremap k gk
+
+xnoremap <Tab> >gv
+xnoremap <S-Tab> <gv
 
 " " Copy to clipboard
+xnoremap <leader>d "+d
+xnoremap <leader>y "+y
+xnoremap <leader>p "+p
+xnoremap <leader>P "+P
 vnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
 nnoremap  <leader>y  "+y
@@ -120,8 +172,12 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 "Toggle lineNumber
+set number
 nnoremap <Leader>l :set invnumber<CR>
 
 "Toggle search highlight
 let hlstate=1
 nnoremap <Leader>k :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
+
+  call camelcasemotion#CreateMotionMappings('<leader>')
+
