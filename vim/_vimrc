@@ -42,22 +42,19 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'scrooloose/syntastic'
 
 "" For custom text objects, needed for all vim-textobj plugins.
-"Plug 'kana/vim-textobj-user'
+Plugin 'kana/vim-textobj-user'
 
 "" Variable (CamelCase or underscore) segment text object (iv / av).
-"Plug 'Julian/vim-textobj-variable-segment'
+Plugin 'Julian/vim-textobj-variable-segment'
 
 "" Comment text object (ic / ac / aC)
-"Plug 'glts/vim-textobj-comment'
-
-"" Entire buffer text object (ie / ae).
-"Plug 'kana/vim-textobj-entire'
+Plugin 'glts/vim-textobj-comment'
 
 "" HTML/XML attribute text object (ix / ax).
-"Plug 'whatyouhide/vim-textobj-xmlattr'
+Plugin 'whatyouhide/vim-textobj-xmlattr'
 
 "" Indent-level text object (ai / ii / aI / iI)
-"Plug 'michaeljsmith/vim-indent-object'
+Plugin 'michaeljsmith/vim-indent-object'
 
  "Bracketed pasting, so pasting code doesn't mess up the indentation.
 Plugin 'conradirwin/vim-bracketed-paste'
@@ -142,10 +139,8 @@ let g:indentLine_color_term = 242
 
 let mapleader = "\<Space>"
 
-let g:startify_bookmarks = ['~/.vimrc', '~/dev']
+let g:startify_bookmarks = ['~/.vimrc', '~/Dev']
 
-inoremap jk <esc>
-inoremap kj <esc>
 inoremap jk <esc>
 inoremap kj <esc>
 
@@ -155,22 +150,6 @@ nnoremap k gk
 xnoremap <Tab> >gv
 xnoremap <S-Tab> <gv
 
-" " Copy to clipboard
-xnoremap <leader>d "+d
-xnoremap <leader>y "+y
-xnoremap <leader>p "+p
-xnoremap <leader>P "+P
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
-
-" " Paste from clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
-
 "Toggle lineNumber
 set number
 nnoremap <Leader>l :set invnumber<CR>
@@ -179,5 +158,5 @@ nnoremap <Leader>l :set invnumber<CR>
 let hlstate=1
 nnoremap <Leader>k :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
 
-  call camelcasemotion#CreateMotionMappings('<leader>')
+call camelcasemotion#CreateMotionMappings('<leader>')
 
