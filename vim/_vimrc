@@ -19,7 +19,6 @@ Plugin 'bling/vim-airline'
 " Quick commenting code <>cc
 Plugin 'scrooloose/nerdcommenter'
 
-
 " File navigation
 " <F5> - refresh
 " <c-f>, <c-b>  - cycle modes
@@ -71,11 +70,9 @@ Plugin 'justinmk/vim-sneak'
 " https://github.com/airblade/vim-gitgutter
 Plugin 'airblade/vim-gitgutter'
 
-Plugin 'mhinz/vim-startify'
-
 """ Language specific plugins
 Plugin 'rust-lang/rust.vim'
-
+Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
@@ -90,14 +87,10 @@ colorscheme Monokai
 set splitbelow
 set splitright
 
-highlight Visual ctermfg=233 ctermbg=67 guifg=#1b1d1e guibg=#465457
-
 " 1 tab == 2 spaces
 set expandtab
 set shiftwidth=2
 set tabstop=2
-
-set lazyredraw
 
 " Linebreak on 500 characters
 set lbr
@@ -106,6 +99,7 @@ set tw=500
 set si "Smart indent
 set wrap "Wrap lines
 
+set lazyredraw
 
 set nobackup
 set directory=~/.vim/swaps
@@ -115,14 +109,13 @@ set undodir=~/.vim/undos
 set ignorecase
 set smartcase
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/dist/*,*/node_modules/*,*/reports/*,*/bower_components/*
+set colorcolumn=80
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.class,*.zip,*/dist/*,*/node_modules/*,*/reports/*,*/bower_components/*,*/test/fixtures/*
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-" Enable transparency
-hi Normal ctermbg=none
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -139,7 +132,8 @@ let g:indentLine_color_term = 242
 
 let mapleader = "\<Space>"
 
-let g:startify_bookmarks = ['~/.vimrc', '~/Dev']
+" Enable transparency
+hi Normal ctermbg=none
 
 inoremap jk <esc>
 inoremap kj <esc>
@@ -147,8 +141,18 @@ inoremap kj <esc>
 nnoremap j gj
 nnoremap k gk
 
+noremap <S-K> kJ
+
 xnoremap <Tab> >gv
 xnoremap <S-Tab> <gv
+
+noremap <leader>h :wincmd s<CR>
+noremap <leader>v :wincmd v<CR>
+noremap <leader>w :w<CR>
+
+noremap <Leader>p "*p
+noremap <Leader>y "*y
+
 
 "Toggle lineNumber
 set number
@@ -157,6 +161,8 @@ nnoremap <Leader>l :set invnumber<CR>
 "Toggle search highlight
 let hlstate=1
 nnoremap <Leader>k :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
+
+vnoremap <Leader>a :norm! @a<CR>
 
 call camelcasemotion#CreateMotionMappings('<leader>')
 
