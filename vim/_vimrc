@@ -1,7 +1,6 @@
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
-set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -18,6 +17,9 @@ Plugin 'bling/vim-airline'
 
 " Quick commenting code <>cc
 Plugin 'scrooloose/nerdcommenter'
+
+" Linter
+Plugin 'w0rp/ale'
 
 " File navigation
 " <F5> - refresh
@@ -37,28 +39,8 @@ Plugin 'tpope/vim-fugitive'
 " Navigation
 Plugin 'tpope/vim-vinegar'
 
-" Syntax checker
-Plugin 'scrooloose/syntastic'
-
-"" For custom text objects, needed for all vim-textobj plugins.
-Plugin 'kana/vim-textobj-user'
-
-"" Variable (CamelCase or underscore) segment text object (iv / av).
-Plugin 'Julian/vim-textobj-variable-segment'
-
-"" Comment text object (ic / ac / aC)
-Plugin 'glts/vim-textobj-comment'
-
-"" HTML/XML attribute text object (ix / ax).
-Plugin 'whatyouhide/vim-textobj-xmlattr'
-
-"" Indent-level text object (ai / ii / aI / iI)
-Plugin 'michaeljsmith/vim-indent-object'
-
  "Bracketed pasting, so pasting code doesn't mess up the indentation.
 Plugin 'conradirwin/vim-bracketed-paste'
-
-Plugin 'bkad/CamelCaseMotion'
 
 Plugin 'tpope/vim-surround'
 
@@ -76,16 +58,14 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
-
 Plugin 'Yggdroot/indentline'
 
 call vundle#end()
 
-set cursorline
-
-colorscheme Monokai
 set splitbelow
 set splitright
+
+colorscheme lucius
 
 " 1 tab == 2 spaces
 set expandtab
@@ -130,6 +110,8 @@ let g:jsx_ext_required = 0
 let g:indentLine_char = '|'
 let g:indentLine_color_term = 242
 
+let g:lucius_style = 'dark'
+
 let mapleader = "\<Space>"
 
 " Enable transparency
@@ -137,9 +119,6 @@ hi Normal ctermbg=none
 
 inoremap jk <esc>
 inoremap kj <esc>
-
-nnoremap j gj
-nnoremap k gk
 
 noremap <S-K> kJ
 
@@ -150,9 +129,8 @@ noremap <leader>h :wincmd s<CR>
 noremap <leader>v :wincmd v<CR>
 noremap <leader>w :w<CR>
 
-noremap <Leader>p "*p
-noremap <Leader>y "*y
-
+noremap <Leader>p "+p
+noremap <Leader>y "+y
 
 "Toggle lineNumber
 set number
@@ -161,8 +139,5 @@ nnoremap <Leader>l :set invnumber<CR>
 "Toggle search highlight
 let hlstate=1
 nnoremap <Leader>k :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
-
+nnoremap <Leader>i :IndentLinesToggle<CR>
 vnoremap <Leader>a :norm! @a<CR>
-
-call camelcasemotion#CreateMotionMappings('<leader>')
-
