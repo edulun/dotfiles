@@ -1,5 +1,4 @@
 filetype off
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -9,26 +8,22 @@ Plugin 'VundleVim/Vundle.vim'
 " Setting colorschemes
 Plugin 'flazz/vim-colorschemes'
 
-" Decent defaults
+" Sensible defaults
 Plugin 'tpope/vim-sensible'
 
-" Status/ tabline
+" Status / tabline
 Plugin 'bling/vim-airline'
 
 " Quick commenting code <>cc
 Plugin 'scrooloose/nerdcommenter'
 
-" Linter
+Plugin 'terryma/vim-multiple-cursors'
+
 Plugin 'w0rp/ale'
 
 " File navigation
-" <F5> - refresh
-" <c-f>, <c-b>  - cycle modes
 " <c-t>, <c-v>, <c-x> to open the selected entry in a new tab or in a new split.
-" <c-n>, <c-p> to select the next/previous string in the prompt's history.
-" <c-y> new file
-" <c-z> mark/unmark multiple files and <c-o> to open them.
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junegunn/fzf'
 
 " Highlight EOL whitespace
 Plugin 'bronson/vim-trailing-whitespace'
@@ -44,8 +39,6 @@ Plugin 'conradirwin/vim-bracketed-paste'
 
 Plugin 'tpope/vim-surround'
 
-Plugin 'Townk/vim-autoclose'
-
 " 2-character search motion (s/S).
 Plugin 'justinmk/vim-sneak'
 
@@ -53,11 +46,17 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'airblade/vim-gitgutter'
 
 """ Language specific plugins
-Plugin 'rust-lang/rust.vim'
-Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'styled-components/vim-styled-components'
 
+" Highlight enclosing tagas
+Plugin 'Valloric/MatchTagAlways'
+
+" Always autoclose HTML tags
+Plugin 'alvan/vim-closetag'
+
+" Displays indentation levels
 Plugin 'Yggdroot/indentline'
 
 call vundle#end()
@@ -65,57 +64,38 @@ call vundle#end()
 set splitbelow
 set splitright
 
-colorscheme lucius
+set lazyredraw
+colorscheme gruvbox
+set background=dark
 
 " 1 tab == 2 spaces
 set expandtab
 set shiftwidth=2
 set tabstop=2
-
 " Linebreak on 500 characters
 set lbr
 set tw=500
-
 set si "Smart indent
 set wrap "Wrap lines
-
-set lazyredraw
+set colorcolumn=80
 
 set nobackup
-set directory=~/.vim/swaps
+set noswapfile
 set undofile
 set undodir=~/.vim/undos
 
 set ignorecase
 set smartcase
+set hlsearch
+set relativenumber
 
-set colorcolumn=80
+set wildignore+=*/tmp/*,*.so,*.swp,*.class,*.zip,*/dist/*,*/node_modules/*,*/reports/*,*/bower_components/*,*/test/fixtures/*,*/build/*
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.class,*.zip,*/dist/*,*/node_modules/*,*/reports/*,*/bower_components/*,*/test/fixtures/*
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-
-let g:jsx_ext_required = 0
-
-let g:indentLine_char = '|'
-let g:indentLine_color_term = 242
-
-let g:lucius_style = 'dark'
-
-let mapleader = "\<Space>"
-
-" Enable transparency
-hi Normal ctermbg=none
+set statusline=%f
+set statusline+=\ %h%w%m%r
+set statusline+=%=
+set statusline+=%-16(%{exists('g:loaded_fugitive')?fugitive#statusline():''}\%)
+set statusline+=\ %P/%L
 
 inoremap jk <esc>
 inoremap kj <esc>
@@ -125,19 +105,41 @@ noremap <S-K> kJ
 xnoremap <Tab> >gv
 xnoremap <S-Tab> <gv
 
-noremap <leader>h :wincmd s<CR>
-noremap <leader>v :wincmd v<CR>
-noremap <leader>w :w<CR>
-
-noremap <Leader>p "+p
-noremap <Leader>y "+y
+noremap <leader>p "+p
+noremap <leader>y "+y
 
 "Toggle lineNumber
 set number
-nnoremap <Leader>l :set invnumber<CR>
 
-"Toggle search highlight
-let hlstate=1
-nnoremap <Leader>k :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
-nnoremap <Leader>i :IndentLinesToggle<CR>
-vnoremap <Leader>a :norm! @a<CR>
+set foldmethod=syntax
+set foldlevel=99
+
+let g:indentLine_char = '|'
+let g:indentLine_color_term = 242
+
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.js,*.vue"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.erb,*.vue'
+let g:closetag_emptyTags_caseSensitive = 1
+
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'javascript.jsx' : 1,
+    \ 'js' : 1,
+    \ 'jinja' : 1,
+    \}
+
+let g:ale_fixers= {}
+let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fix_on_save = 1
+
+let mapleader = "\<Space>"
+nnoremap <Leader>l :set invnumber<CR>
+noremap <leader>h :wincmd s<CR>
+noremap <leader>v :wincmd v<CR>
+noremap <leader>w :w<CR>
+noremap <leader>p @p
+noremap <c-p> :FZF<CR>
+
+"JOIN 2 blocks :1,g/^/''+m.|-j!
