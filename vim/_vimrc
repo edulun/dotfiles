@@ -1,5 +1,6 @@
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
+set shell=/bin/bash
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -17,8 +18,10 @@ Plugin 'bling/vim-airline'
 " Quick commenting code <>cc
 Plugin 'scrooloose/nerdcommenter'
 
+" Multiple cursors
 Plugin 'terryma/vim-multiple-cursors'
 
+" Linter
 Plugin 'w0rp/ale'
 
 " File navigation
@@ -31,12 +34,13 @@ Plugin 'bronson/vim-trailing-whitespace'
 " Git wrapper
 Plugin 'tpope/vim-fugitive'
 
-" Navigation
+" Easier navigation with netrw
 Plugin 'tpope/vim-vinegar'
 
- "Bracketed pasting, so pasting code doesn't mess up the indentation.
+" Bracketed pasting, so pasting code doesn't mess up the indentation.
 Plugin 'conradirwin/vim-bracketed-paste'
 
+" Surround text
 Plugin 'tpope/vim-surround'
 
 " 2-character search motion (s/S).
@@ -45,12 +49,7 @@ Plugin 'justinmk/vim-sneak'
 " https://github.com/airblade/vim-gitgutter
 Plugin 'airblade/vim-gitgutter'
 
-""" Language specific plugins
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'styled-components/vim-styled-components'
-
-" Highlight enclosing tagas
+" Highlight enclosing tags
 Plugin 'Valloric/MatchTagAlways'
 
 " Always autoclose HTML tags
@@ -58,6 +57,12 @@ Plugin 'alvan/vim-closetag'
 
 " Displays indentation levels
 Plugin 'Yggdroot/indentline'
+
+""" Language specific plugins
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'styled-components/vim-styled-components'
+Plugin 'posva/vim-vue'
 
 call vundle#end()
 
@@ -91,6 +96,7 @@ set relativenumber
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.class,*.zip,*/dist/*,*/node_modules/*,*/reports/*,*/bower_components/*,*/test/fixtures/*,*/build/*
 
+set nomodeline
 set statusline=%f
 set statusline+=\ %h%w%m%r
 set statusline+=%=
@@ -107,9 +113,6 @@ xnoremap <S-Tab> <gv
 
 noremap <leader>p "+p
 noremap <leader>y "+y
-
-"Toggle lineNumber
-set number
 
 set foldmethod=syntax
 set foldlevel=99
@@ -135,11 +138,25 @@ let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fix_on_save = 1
 
 let mapleader = "\<Space>"
-nnoremap <Leader>l :set invnumber<CR>
+
+" Relative or absolute number lines
+function! NumberToggle()
+  if(&number == 1)
+    set number!
+    set relativenumber!
+  elseif(&relativenumber==1)
+    set relativenumber
+    set number
+  else
+    set norelativenumber
+    set number
+  endif
+endfunction
+
+nnoremap <Leader>l :call NumberToggle()<CR>
+
 noremap <leader>h :wincmd s<CR>
+noremap <leader>G :GitGutterToggle<CR>
 noremap <leader>v :wincmd v<CR>
 noremap <leader>w :w<CR>
-noremap <leader>p @p
 noremap <c-p> :FZF<CR>
-
-"JOIN 2 blocks :1,g/^/''+m.|-j!
